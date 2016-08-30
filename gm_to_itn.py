@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import binascii
 import re
 import sys
 
@@ -33,8 +34,12 @@ def to_tomtom_itn(tomtom_coords_list):
     return s
 
 def tomtom_itn_to_file(filename, tomtom_itn):
-    with open(filename, "wt") as f:
-        f.write("ï»¿")
+    with open(filename, "wb") as f:
+        f.write(binascii.unhexlify('ef'))
+        f.write(binascii.unhexlify('bb'))
+        f.write(binascii.unhexlify('bf'))
+
+    with open(filename, "at") as f:
         f.write(tomtom_itn)
 
 #s = "https://www.google.ca/maps/dir/45.4411602,12.3059277/46.5486383,13.7149386/@45.9969317,12.4437186,9z/data=!4m14!4m13!1m10!3m4!1m2!1d13.4880256!2d46.1581339!3s0x477a5021cfa0fa4b:0x4cad8ec4af26197b!3m4!1m2!1d13.7437744!2d46.4220801!3s0x477a63a3a7173027:0xa70900f2994ad9aa!1m0!3e0?hl=en"
