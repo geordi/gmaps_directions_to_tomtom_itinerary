@@ -44,11 +44,22 @@ def tomtom_itn_to_file(filename, tomtom_itn):
 
 #s = "https://www.google.ca/maps/dir/45.4411602,12.3059277/46.5486383,13.7149386/@45.9969317,12.4437186,9z/data=!4m14!4m13!1m10!3m4!1m2!1d13.4880256!2d46.1581339!3s0x477a5021cfa0fa4b:0x4cad8ec4af26197b!3m4!1m2!1d13.7437744!2d46.4220801!3s0x477a63a3a7173027:0xa70900f2994ad9aa!1m0!3e0?hl=en"
 
+def print_help():
+    print "Usage: gm_to_itn.py '<google_maps_direction_share_string>' <destination_file>"
+    print
+
 def main():
     print 'argv', sys.argv
 
     if len(sys.argv) < 2:
+        print
         print "Not enough arguments"
+        print_help()
+        return -1
+    elif len(sys.argv) > 3:
+        print
+        print "Too many arguments"
+        print_help()
         return -1
     else:
         s = sys.argv[1]
