@@ -10,7 +10,6 @@ def one_wgs84_coord_to_tomtom_coord(wgs84_coord_str):
     return tomtom_coord
 
 def wgs84_coord_to_tomtom_coord(wgs84_coord_str):
-    print wgs84_coord_str
     lat, lon = wgs84_coord_str.split(',')
 
     return one_wgs84_coord_to_tomtom_coord(lon), one_wgs84_coord_to_tomtom_coord(lat)
@@ -82,9 +81,6 @@ def main():
     tomtom_start = wgs84_coord_to_tomtom_coord(start_coord_str)
     tomtom_end = wgs84_coord_to_tomtom_coord(end_coord_str)
 
-    print "Start: {}, End: {}".format(tomtom_start, tomtom_end)
-
-
     re_waypoint_coord = '\d+\.\d+!2d\d+\.\d+'
 
     waypoints_coords = re.findall(re_waypoint_coord, waypoints)
@@ -95,7 +91,6 @@ def main():
 
     for waypoint in waypoints_coords:
         tt_w = waypoint_gm_coord_to_tomtom_coord(waypoint)
-        print tt_w
         waypoints_tomtom.append(tt_w)
         all_points_tomtom.append(tt_w)
 
