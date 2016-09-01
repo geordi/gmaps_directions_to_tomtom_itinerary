@@ -22,6 +22,8 @@ def waypoint_gm_coord_to_tomtom_coord(waypoint_gm_coord_str):
     return lon, lat
 
 def to_tomtom_itn(tomtom_coords_list):
+    start_end_str = {0: 'Start', len(tomtom_coords_list) - 1: 'End'}
+
     s = ''
     for no, tomtom_coord in enumerate(tomtom_coords_list):
         flag = 0
@@ -29,7 +31,10 @@ def to_tomtom_itn(tomtom_coords_list):
             flag = 4
         elif no == len(tomtom_coords_list) - 1:
             flag = 2
-        s += '{}|{}|WP - {}|{}|\n'.format(tomtom_coord[0], tomtom_coord[1], no, flag)
+        if no == 0 or no == len(tomtom_coords_list) - 1:
+            s += '{}|{}|{}|{}|\n'.format(tomtom_coord[0], tomtom_coord[1], start_end_str[no], flag)
+        else:
+            s += '{}|{}|Waypoint - {}|{}|\n'.format(tomtom_coord[0], tomtom_coord[1], no, flag)
 
     return s
 
